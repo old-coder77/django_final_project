@@ -61,7 +61,7 @@
             <h2><a href="#exam" class="" data-toggle="collapse">Exam</a></h2>
            <div id="exam" class="collapse">
             {% if user.is_authenticated %}
-            <form id="questionform" action="point to a submit view" method="post">
+            <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="post">
                 {% for lesson in course.lesson_set.all %}
                 {% for question in lesson.question_set.all %}
                 <div class="card mt-1">
