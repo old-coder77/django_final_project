@@ -57,11 +57,13 @@
             
 
             <!-- A collapse example here:-->
-            {% if user.is_authenticated %}
+           
             <h2><a href="#exam" class="" data-toggle="collapse">Exam</a></h2>
            <div id="exam" class="collapse">
+            {% if user.is_authenticated %}
             <form id="questionform" action="point to a submit view" method="post">
-                {% for question in course.question_set.all %}
+                {% for lesson in course.lesson_set.all %}
+                {% for question in lesson.question_set.all %}
                 <div class="card mt-1">
                     <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                     {% csrf_token %}
@@ -78,36 +80,14 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endfor %}
             <input class="btn btn-success btn-block" type="submit" value="Submit">
     </form> 
-
-                
-           
-                    
-                       
-                                 
-                     
-          
-
-            <!-- <HINT> If user is authenticated, show course exam with a list of question -->
-
-            <!-- <HINT> Each example will have many questions -->
-
-            <!-- <HINT> Each question will have many choices -->
-
-
-            <!-- <HINT> Create a form to collect the selected choices for all questions -->
-            <!-- <HINT> For each question choice, you may create a checkbox input like
-            <input type="check" name="choice_{{choice.id}}" id="{{choice.id}}" ...>
-            -->
-
-            <!-- A choice submission form example -->
-
-            
-
-            <!--Check here to see more details Bootstrap checkbox
-             https://www.w3schools.com/bootstrap4/bootstrap_forms_inputs.asp-->
-    </div>
-    {% endif %}
+    {% else %}
+                <h3>Please login or signup for the course above to take the exam</h3>
+      
+    {% endif %}    
+</div>
+   
 </body>
 </html>
